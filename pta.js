@@ -13,6 +13,7 @@ var hiscore = 0;
 var rvar = 0;
 var direction ="";
 var running = false;
+var enter = false;
 
 //Initial function peformed when the game is loaded onto website.
 
@@ -28,6 +29,7 @@ function run() {
 	window.setTimeout(function() {
 		document.getElementById("gameContainer").style.background = "linear-gradient(#001cee,#0014a9,black)";
 		document.getElementById("dummy").innerHTML = '<embed src="music.mp3" autostart="true" loop="true" width="0px" height="0px"></embed>';
+		enter = true;
 		back();
 	},5000);
 }
@@ -211,7 +213,7 @@ function checkKey(e) {
 		}
 		displayScore();
 	}
-	else if (e.keyCode == '13') {
+	else if (e.keyCode == '13' && enter == true) {
 		// enter key
 		e.preventDefault();
 		begin();
