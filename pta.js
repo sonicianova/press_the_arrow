@@ -156,7 +156,7 @@ function checkKey(e) {
 	e = e || window.event;
 	e.preventDefault();
 
-	if (e.keyCode == '38' && lost == false) {
+	if (e.keyCode == '38' && lost == false && running == true) {
 		// up arrow
 		e.preventDefault();
 		if (direction === "up") {
@@ -171,7 +171,7 @@ function checkKey(e) {
 		}
 		displayScore();
 	}
-	else if (e.keyCode == '40' && lost == false) {
+	else if (e.keyCode == '40' && lost == false && running == true) {
 		// down arrow
 		e.preventDefault();
 		if (direction === "down") {
@@ -186,7 +186,7 @@ function checkKey(e) {
 		}
 		displayScore();
 	}
-	else if (e.keyCode == '37' && lost == false) {
+	else if (e.keyCode == '37' && lost == false && running == true) {
 		// left arrow
 		e.preventDefault();
 		if (direction === "left") {
@@ -201,7 +201,7 @@ function checkKey(e) {
 		}
 		displayScore();
 	}
-	else if (e.keyCode == '39' && lost == false) {
+	else if (e.keyCode == '39' && lost == false && running == true) {
 		// right arrow
 		e.preventDefault();
 		if (direction === "right") {
