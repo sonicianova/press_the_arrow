@@ -14,6 +14,7 @@ var rvar = 0;
 var direction ="";
 var running = false;
 var enter = false;
+var lost = true;
 
 //Initial function peformed when the game is loaded onto website.
 
@@ -70,6 +71,7 @@ function begin() {
 function play() {
 	randomize();
 	running = true;
+	lost = false;
 }
 
 window.setInterval(function() {
@@ -83,6 +85,7 @@ window.setInterval(function() {
 
 function gameOver(message) {
 	running = false;
+	lost = true;
 	replace("<img id='title' src='title.png' /><br><br><div class='divider'></div><br><h2>"+message+"</h2><br><h3>Your final score was "+score+"</h3><br><button type='button' class='menuButton' onclick='begin()'>AGAIN!</button>");
 }
 
@@ -153,7 +156,7 @@ function checkKey(e) {
 	e = e || window.event;
 	e.preventDefault();
 
-	if (e.keyCode == '38') {
+	if (e.keyCode == '38' && lost == false) {
 		// up arrow
 		e.preventDefault();
 		if (direction === "up") {
@@ -168,7 +171,7 @@ function checkKey(e) {
 		}
 		displayScore();
 	}
-	else if (e.keyCode == '40') {
+	else if (e.keyCode == '40' && lost == false) {
 		// down arrow
 		e.preventDefault();
 		if (direction === "down") {
@@ -183,7 +186,7 @@ function checkKey(e) {
 		}
 		displayScore();
 	}
-	else if (e.keyCode == '37') {
+	else if (e.keyCode == '37' && lost == false) {
 		// left arrow
 		e.preventDefault();
 		if (direction === "left") {
@@ -198,7 +201,7 @@ function checkKey(e) {
 		}
 		displayScore();
 	}
-	else if (e.keyCode == '39') {
+	else if (e.keyCode == '39' && lost == false) {
 		// right arrow
 		e.preventDefault();
 		if (direction === "right") {
