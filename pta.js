@@ -1,5 +1,3 @@
-
-
 //All programming by Andrew W. Alban, 2016
 //Distributed by SoniciaNova, founded by Andrew W. Alban
 
