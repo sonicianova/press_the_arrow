@@ -102,6 +102,7 @@ Distributed by SoniciaNova, founded by Andrew W. Alban*/
 	border:black;
 	color:white;
 	font-family:Arial;
+	border:2px solid black;
 }
 #startButton {
 	background-color:black;
