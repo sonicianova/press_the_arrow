@@ -42,7 +42,7 @@ function load() {
 //Main functions:
 
 function run() {
-	replace("<img id='logo' src='http://i.imgur.com/t4bXUM2.png' />");
+	replace("<img id='logo' src='SoniciaNova.png' />");
 	document.getElementById("dummy").innerHTML  = '<embed src="recording1.wav" autostart="true" loop="false" width="0px" height="0px"></embed>';
 	window.setTimeout(function() {
 		document.getElementById("gameContainer").style.background = "linear-gradient(#001cee,#0014a9,black)";
