@@ -46,9 +46,7 @@ function run() {
 	document.getElementById("dummy").innerHTML  = '<embed src="recording1.wav" autostart="true" loop="false" width="0px" height="0px"></embed>';
 	window.setTimeout(function() {
 		document.getElementById("gameContainer").style.background = "linear-gradient(#001cee,#0014a9,black)";
-		window.setInterval(function() {
-			document.getElementById("dummy").innerHTML = '<embed src="music.mp3" autostart="true" loop="true" width="0px" height="0px"></embed>';
-		},242000);
+		document.getElementById("dummy").innerHTML = '<embed src="music.mp3" autostart="true" loop="true" width="0px" height="0px"></embed>';
 		enter = true;
 		back();
 	},5000);
