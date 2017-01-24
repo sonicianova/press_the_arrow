@@ -192,10 +192,10 @@ function displayScore() {
 function setTime() {
 	switch (difficulty) {
 		case "Normal":
-			time = 1.5;
+			time = 1.25;
 			break;
 		case "Hard":
-			time = 1;
+			time = 0.75;
 			break;
 		case "Impossible":
 			time = 0.5;
