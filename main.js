@@ -33,6 +33,7 @@ var direction ="";
 var running = false;
 var enter = false;
 var difficulty = "Normal";
+var keyType = "arrow";
 
 //Initial function peformed when the game is loaded onto website.
 
@@ -55,7 +56,7 @@ function run() {
 
 function start() {
 	if (check_played == false) {
-		replace("<br><br><h2>Instructions</h2><br><div class='divider'></div><p>Press the arrow key corresponding with the white arrow and opposite the black arrow! Try to score as high as you can!</p><button type='button' class='menuButton' onclick='begin()'>Got It!</button>")
+		replace("<br><br><h2>Instructions</h2><br><div class='divider'></div><p>Press the arrow key corresponding with the white arrow and opposite the black arrow! (Hard and Impossible mode also use WASD keys) Try to score as high as you can!</p><button type='button' class='menuButton' onclick='begin()'>Got It!</button>")
 	} else {
 		begin();
 	}
@@ -147,31 +148,101 @@ function updateTime() {
 }
 
 function randomize() {
-	rvar = Math.random();
-	if (rvar <0.125) {
-		setArr("&larr;", "white");
-		setDir("left");
-	} else if (rvar <0.25) {
-		setArr("&rarr;", "white");
-		setDir("right");
-	} else if (rvar <0.375) {
-		setArr("&uarr;", "white");
-		setDir("up");
-	} else if (rvar <0.5) {
-		setArr("&darr;", "white");
-		setDir("down");
-	} else if (rvar <0.625) {
-		setArr("&larr;", "black");
-		setDir("right");
-	} else if (rvar <0.75) {
-		setArr("&rarr;", "black");
-		setDir("left");
-	} else if (rvar <0.875) {
-		setArr("&uarr;", "black");
-		setDir("down");
-	} else if (rvar <1) {
-		setArr("&darr;", "black");
-		setDir("up");
+	if (difficulty === "Easy" || difficulty === "Normal") {
+		rvar = Math.random();
+		keyType = "arrow";
+		if (rvar <0.125) {
+			setArr("&larr;", "white");
+			setDir("left");
+		} else if (rvar <0.25) {
+			setArr("&rarr;", "white");
+			setDir("right");
+		} else if (rvar <0.375) {
+			setArr("&uarr;", "white");
+			setDir("up");
+		} else if (rvar <0.5) {
+			setArr("&darr;", "white");
+			setDir("down");
+		} else if (rvar <0.625) {
+			setArr("&larr;", "black");
+			setDir("right");
+		} else if (rvar <0.75) {
+			setArr("&rarr;", "black");
+			setDir("left");
+		} else if (rvar <0.875) {
+			setArr("&uarr;", "black");
+			setDir("down");
+		} else if (rvar <1) {
+			setArr("&darr;", "black");
+			setDir("up");
+		}
+	} else if (difficulty === "Hard" || difficulty === "Impossible") {
+		rvar = Math.random();
+		if (rvar <0.0625) {
+			setArr("&larr;", "white");
+			setDir("left");
+			keyType = "arrow";
+		} else if (rvar <0.125) {
+			setArr("&rarr;", "white");
+			setDir("right");
+			keyType = "arrow";
+		} else if (rvar <0.1875) {
+			setArr("&uarr;", "white");
+			setDir("up");
+			keyType = "arrow";
+		} else if (rvar <0.25) {
+			setArr("&darr;", "white");
+			setDir("down");
+			keyType = "arrow";
+		} else if (rvar <0.3125) {
+			setArr("&larr;", "black");
+			setDir("right");
+			keyType = "arrow";
+		} else if (rvar <0.375) {
+			setArr("&rarr;", "black");
+			setDir("left");
+			keyType = "arrow";
+		} else if (rvar <0.4375) {
+			setArr("&uarr;", "black");
+			setDir("down");
+			keyType = "arrow";
+		} else if (rvar <0.5) {
+			setArr("&darr;", "black");
+			setDir("up");
+			keyType = "arrow";
+		} else if (rvar <0.5625) {
+			setArr("A", "white");
+			setDir("left");
+			keyType = "key";
+		} else if (rvar <0.625) {
+			setArr("D", "white");
+			setDir("right");
+			keyType = "key";
+		} else if (rvar <0.6875) {
+			setArr("W", "white");
+			setDir("up");
+			keyType = "key";
+		} else if (rvar <0.75) {
+			setArr("S", "white");
+			setDir("down");
+			keyType = "key";
+		} else if (rvar <0.8125) {
+			setArr("A", "black");
+			setDir("right");
+			keyType = "key";
+		} else if (rvar <0.875) {
+			setArr("D", "black");
+			setDir("left");
+			keyType = "key";
+		} else if (rvar <0.9375) {
+			setArr("W", "black");
+			setDir("down");
+			keyType = "key";
+		} else if (rvar <1) {
+			setArr("S", "black");
+			setDir("up");
+			keyType = "key";
+		}
 	}
 }
 
@@ -192,10 +263,10 @@ function displayScore() {
 function setTime() {
 	switch (difficulty) {
 		case "Normal":
-			time = 1.25;
+			time = 1.5;
 			break;
 		case "Hard":
-			time = 0.75;
+			time = 1;
 			break;
 		case "Impossible":
 			time = 0.5;
@@ -211,14 +282,12 @@ function setTime() {
 document.onkeydown = checkKey;
 
 function checkKey(e) {
-
 	e = e || window.event;
 	e.preventDefault();
-
 	if (e.keyCode == '38' && running == true) {
 		// up arrow
 		e.preventDefault();
-		if (direction === "up" && running == true) {
+		if (direction === "up" && running == true && keyType === "arrow") {
 			score += 1;
 			setTime();
 			if (score > hiscore) {
@@ -229,11 +298,10 @@ function checkKey(e) {
 			gameOver("You pressed the wrong key, so you lose!");
 		}
 		displayScore();
-	}
-	else if (e.keyCode == '40' && running == true) {
+	} else if (e.keyCode == '40' && running == true) {
 		// down arrow
 		e.preventDefault();
-		if (direction === "down" && running == true) {
+		if (direction === "down" && running == true && keyType === "arrow") {
 			score += 1;
 			setTime();
 			if (score > hiscore) {
@@ -244,11 +312,10 @@ function checkKey(e) {
 			gameOver("You pressed the wrong key, so you lose!");
 		}
 		displayScore();
-	}
-	else if (e.keyCode == '37' && running == true) {
+	} else if (e.keyCode == '37' && running == true) {
 		// left arrow
 		e.preventDefault();
-		if (direction === "left" && running == true) {
+		if (direction === "left" && running == true && keyType === "arrow") {
 			score += 1;
 			setTime();
 			if (score > hiscore) {
@@ -259,11 +326,10 @@ function checkKey(e) {
 			gameOver("You pressed the wrong key, so you lose!");
 		}
 		displayScore();
-	}
-	else if (e.keyCode == '39' && running == true) {
+	} else if (e.keyCode == '39' && running == true) {
 		// right arrow
 		e.preventDefault();
-		if (direction === "right" && running == true) {
+		if (direction === "right" && running == true && keyType === "arrow") {
 			score += 1;
 			setTime();
 			if (score > hiscore) {
@@ -274,8 +340,63 @@ function checkKey(e) {
 			gameOver("You pressed the wrong key, so you lose!");
 		}
 		displayScore();
-	}
-	else if (e.keyCode == '13' && enter == true) {
+	} else if (e.keyCode == '87' && running == true) {
+		// w
+		e.preventDefault();
+		if (direction === "up" && running == true && keyType === "key") {
+			score += 1;
+			setTime();
+			if (score > hiscore) {
+				hiscore = score;
+			}
+			randomize();
+		} else {
+			gameOver("You pressed the wrong key, so you lose!");
+		}
+		displayScore();
+	} else if (e.keyCode == '65' && running == true) {
+		// a
+		e.preventDefault();
+		if (direction === "left" && running == true && keyType === "key") {
+			score += 1;
+			setTime();
+			if (score > hiscore) {
+				hiscore = score;
+			}
+			randomize();
+		} else {
+			gameOver("You pressed the wrong key, so you lose!");
+		}
+		displayScore();
+	} else if (e.keyCode == '83' && running == true) {
+		// s
+		e.preventDefault();
+		if (direction === "down" && running == true && keyType === "key") {
+			score += 1;
+			setTime();
+			if (score > hiscore) {
+				hiscore = score;
+			}
+			randomize();
+		} else {
+			gameOver("You pressed the wrong key, so you lose!");
+		}
+		displayScore();
+	} else if (e.keyCode == '68' && running == true) {
+		// d
+		e.preventDefault();
+		if (direction === "right" && running == true && keyType === "key") {
+			score += 1;
+			setTime();
+			if (score > hiscore) {
+				hiscore = score;
+			}
+			randomize();
+		} else {
+			gameOver("You pressed the wrong key, so you lose!");
+		}
+		displayScore();
+	} else if (e.keyCode == '13' && enter == true) {
 		// enter key
 		e.preventDefault();
 		begin();
