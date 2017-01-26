@@ -108,7 +108,7 @@ window.setInterval(function() {
 
 function gameOver(message) {
 	running = false;
-	replace("<img id='title' src='pta_title.png' /><br><br><div class='divider'></div><br><h2>"+message+"</h2><br><h3>Your final score was "+score+"</h3><br><button type='button' id='biggerButton' class='menuButton' onclick='begin()'>AGAIN!<p id='press_enter'>(Press Enter)</p></button><button type='button' class='menuButton' onclick='back()'>BACK</button>");
+	replace("<img id='title' src='pta_title.png' /><br><br><div class='divider'></div><br><h2>"+message+"</h2><h3>Your final score was "+score+"</h3><h3>You high score is "+hiscore"</h3><br><button type='button' id='biggerButton' class='menuButton' onclick='begin()'>AGAIN!<p id='press_enter'>(Press Enter)</p></button><button type='button' class='menuButton' onclick='back()'>BACK</button>");
 }
 
 function changeDifficulty() {
