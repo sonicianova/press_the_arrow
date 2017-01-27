@@ -27,7 +27,10 @@ function replaceMain(object) { //This replaces what is currently inside of the m
 var check_played = false;
 var time = 1.59;
 var score = 0;
-var hiscore = 0;
+var normalhiscore = 0;
+var hardhiscore = 0;
+var impossiblehiscore = 0;
+var easyhiscore = 0;
 var rvar = 0;
 var direction ="";
 var running = false;
@@ -108,7 +111,20 @@ window.setInterval(function() {
 
 function gameOver(message) {
 	running = false;
-	replace("<img id='title' src='pta_title.png' /><br><br><div class='divider'></div><br><h2>"+message+"</h2><h3>Your final score was "+score+"</h3><h3>You high score is "+hiscore+"</h3><br><button type='button' id='biggerButton' class='menuButton' onclick='begin()'>AGAIN!<p id='press_enter'>(Press Enter)</p></button><button type='button' class='menuButton' onclick='back()'>BACK</button>");
+	switch (difficulty) {
+		case "Normal":
+			replace("<img id='title' src='pta_title.png' /><br><br><div class='divider'></div><br><h2>"+message+"</h2><h3>Score: "+score+"</h3><h3>" + difficulty + " Hi-score: "+normalhiscore+"</h3><br><button type='button' id='biggerButton' class='menuButton' onclick='begin()'>AGAIN!<p id='press_enter'>(Press Enter)</p></button><button type='button' class='menuButton' onclick='back()'>BACK</button>");
+			break;
+		case "Hard":
+			replace("<img id='title' src='pta_title.png' /><br><br><div class='divider'></div><br><h2>"+message+"</h2><h3>Score: "+score+"</h3><h3>" + difficulty + " Hi-score: "+hardhiscore+"</h3><br><button type='button' id='biggerButton' class='menuButton' onclick='begin()'>AGAIN!<p id='press_enter'>(Press Enter)</p></button><button type='button' class='menuButton' onclick='back()'>BACK</button>");
+			break;
+		case "Impossible":
+			replace("<img id='title' src='pta_title.png' /><br><br><div class='divider'></div><br><h2>"+message+"</h2><h3>Score: "+score+"</h3><h3>" + difficulty + " Hi-score: "+impossiblehiscore+"</h3><br><button type='button' id='biggerButton' class='menuButton' onclick='begin()'>AGAIN!<p id='press_enter'>(Press Enter)</p></button><button type='button' class='menuButton' onclick='back()'>BACK</button>");
+			break;
+		case "Easy":
+			replace("<img id='title' src='pta_title.png' /><br><br><div class='divider'></div><br><h2>"+message+"</h2><h3>Score: "+score+"</h3><h3>" + difficulty + " Hi-score: "+easyhiscore+"</h3><br><button type='button' id='biggerButton' class='menuButton' onclick='begin()'>AGAIN!<p id='press_enter'>(Press Enter)</p></button><button type='button' class='menuButton' onclick='back()'>BACK</button>");
+			break;
+	}
 }
 
 function changeDifficulty() {
@@ -257,22 +273,51 @@ function setDir(dir) {
 
 function displayScore() {
 	document.getElementById("score").innerHTML = "Score:" + score;
-	document.getElementById("hiscore").innerHTML = "Hi-score:" + hiscore;
+	switch (difficulty) {
+		case "Normal":
+			document.getElementById("hiscore").innerHTML = "Hi-score:" + normalhiscore;
+			break;
+		case "Hard":
+			document.getElementById("hiscore").innerHTML = "Hi-score:" + hardhiscore;
+			break;
+		case "Impossible":
+			document.getElementById("hiscore").innerHTML = "Hi-score:" + impossiblehiscore;
+			break;
+		case "Easy":
+			document.getElementById("hiscore").innerHTML = "Hi-score:" + easyhiscore;
+			break;
+	}
 }
 
 function setTime() {
 	switch (difficulty) {
 		case "Normal":
 			time = 1.5;
+			if (score > normalhiscore) {
+				normalhiscore = score;
+				document.getElementById("hiscore").innerHTML = "Hi-score:" + normalhiscore;
+			}
 			break;
 		case "Hard":
 			time = 1;
+			if (score > hardhiscore) {
+				hardhiscore = score;
+				document.getElementById("hiscore").innerHTML = "Hi-score:" + hardhiscore;
+			}
 			break;
 		case "Impossible":
 			time = 0.5;
+			if (score > impossiblehiscore) {
+				impossiblehiscore = score;
+				document.getElementById("hiscore").innerHTML = "Hi-score:" + impossiblehiscore;
+			}
 			break;
 		case "Easy":
 			time = 2;
+			if (score > easyhiscore) {
+				easyhiscore = score;
+				document.getElementById("hiscore").innerHTML = "Hi-score:" + easyhiscore;
+			}
 			break;
 	}
 }
