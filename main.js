@@ -80,8 +80,8 @@ function options() {
 
 function begin() {
 	replace("<img id='title' src='pta_title.png' /><br><br><div class='divider'></div><br><h1 id='countdown'>3</h1><br><h2 id='arrow'>Get Ready!</h2><p id='score'></p><p id='hiscore'></p>");
-	setTime();
 	score = 0;
+	setTime();
 	displayScore();
 	window.setTimeout(function() {
 		document.getElementById("countdown").innerHTML = "2";
